@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeManagementSystem.Views.LoginView"
+             Title=""
+             Shell.NavBarIsVisible="False"
+                          MinimumHeightRequest="600"
+             MinimumWidthRequest="1200">
+
+    <ScrollView>
+        <VerticalStackLayout BackgroundColor="#756a99">
+
+            <!-- Header Section -->
+            <Grid BackgroundColor="#756a99" HeightRequest="100">
+                <Label 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"
+                    FontSize="Header"
+                    Text="Employee Management System"
+                    FontFamily="LatoBold"
+                    TextColor="White"/>
+            </Grid>
+            <Label x:Name="errorMessageLabel"
+               TextColor="Red"
+               IsVisible="False"
+               HorizontalOptions="Center"/>
+            <!-- Content Section -->
+            <Grid BackgroundColor="#1d203e" Padding="30, 0, 30, 0">
+                <VerticalStackLayout>
+
+                    <Label FontAttributes="Bold"
+                           FontSize="18"
+                           Text="Welcome!"
+                           FontFamily="Lato"
+                           TextColor="White"
+                           Margin="0,30,0,-10"/>
+
+                    <!-- Email Entry -->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle BackgroundColor="#756a99" 
+                                        CornerRadius="10"
+                                        HeightRequest="45"
+                                        WidthRequest="110"/>
+                        <Label Text="Email:" 
+                               Grid.Column="0" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               FontSize="18"
+                               FontFamily="Lato"/>
+                        <Entry x:Name="emailEntry"
+                            Grid.Column="1"
+                            Placeholder="Enter your email..."
+                            BackgroundColor="AliceBlue"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            Opacity=".9"
+                            />
+                    </Grid>
+
+                    <!-- Password Entry -->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.6*,.2*">
+                        <RoundRectangle BackgroundColor="#756a99" 
+                                        CornerRadius="10"
+                                        HeightRequest="45"
+                                        WidthRequest="110"/>
+                        <Label Text="Password:" 
+                               Grid.Column="0" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               FontSize="18"
+                               FontFamily="Lato"/>
+                        <Entry 
+                            x:Name="passwordEntry"
+                            Grid.Column="1"
+                            Placeholder="Enter your password here..."
+                            BackgroundColor="AliceBlue"
+                            IsPassword="True"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            Opacity=".9"/>
+
+                        <Button x:Name="showHidePasswordButton"
+                    Text="Show"
+                                WidthRequest="100"
+                    Clicked="OnShowHidePasswordButtonClicked"
+                                Grid.Column="2" BackgroundColor="#756a99" TextColor="White"/>
+                        
+                    </Grid>
+                    <HorizontalStackLayout>
+                        <CheckBox x:Name="rememberMeCheckBox" IsChecked="False" HorizontalOptions="Center" Margin="525,20,0,0" Color="Gray"/>
+                        <Label Text="Remember Me" TextColor="White" Margin="0,20,0,0"
+                           HorizontalOptions="Center"
+               VerticalTextAlignment="Center"
+                               VerticalOptions="Center"
+               FontSize="14"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Login Button -->
+                    <Button               
+                        BackgroundColor="#756a99"
+                        Text="Login"
+                        TextColor="White"
+                        HeightRequest="20"
+                        WidthRequest="90"
+                        Margin="0,20,0,0"
+                        MaximumWidthRequest="150"
+                        x:Name="loginButton"
+                        Clicked="OnLoginButtonClicked"/>
+
+                    <!-- Forgot Password Link -->
+                    <Button Margin="0,20,0,0" 
+                            HorizontalOptions="Center"
+                            Text="Forgot your password?"
+                            HeightRequest="30"
+                            MaximumWidthRequest="200"
+                            TextColor="White"
+                            BackgroundColor="#34306a"
+                             Clicked="OnForgotPasswordButtonClicked"/>
+
+                    <!-- Create Account Button -->
+                    <Button    
+                        BackgroundColor="#34306a"
+                        HeightRequest="40"
+                        Text="Create a new account"
+                        MaximumWidthRequest="179"
+                        TextColor="White"
+                        Margin="0,20,0,40"
+                        Clicked="OnCreateAccountButtonClicked"/>
+
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

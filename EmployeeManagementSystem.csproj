@@ -1,0 +1,214 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!--<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks> -->
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>EmployeeManagementSystem</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>EmployeeManagementSystem</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.employeemanagementsystem</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Resources\Images\NewFolder1\**" />
+	  <Compile Remove="Resources\Images\NewFolder2\**" />
+	  <Compile Remove="Resources\Images\NewFolder3\**" />
+	  <Compile Remove="Resources\Images\NewFolder\**" />
+	  <EmbeddedResource Remove="Resources\Images\NewFolder1\**" />
+	  <EmbeddedResource Remove="Resources\Images\NewFolder2\**" />
+	  <EmbeddedResource Remove="Resources\Images\NewFolder3\**" />
+	  <EmbeddedResource Remove="Resources\Images\NewFolder\**" />
+	  <MauiCss Remove="Resources\Images\NewFolder1\**" />
+	  <MauiCss Remove="Resources\Images\NewFolder2\**" />
+	  <MauiCss Remove="Resources\Images\NewFolder3\**" />
+	  <MauiCss Remove="Resources\Images\NewFolder\**" />
+	  <MauiImage Remove="Resources\Images\NewFolder1\**" />
+	  <MauiImage Remove="Resources\Images\NewFolder2\**" />
+	  <MauiImage Remove="Resources\Images\NewFolder3\**" />
+	  <MauiImage Remove="Resources\Images\NewFolder\**" />
+	  <MauiXaml Remove="Resources\Images\NewFolder1\**" />
+	  <MauiXaml Remove="Resources\Images\NewFolder2\**" />
+	  <MauiXaml Remove="Resources\Images\NewFolder3\**" />
+	  <MauiXaml Remove="Resources\Images\NewFolder\**" />
+	  <None Remove="Resources\Images\NewFolder1\**" />
+	  <None Remove="Resources\Images\NewFolder2\**" />
+	  <None Remove="Resources\Images\NewFolder3\**" />
+	  <None Remove="Resources\Images\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\Lato-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Lato-Light.ttf" />
+	  <None Remove="Resources\Images\admin.png" />
+	  <None Remove="Resources\Images\admin_settings.png" />
+	  <None Remove="Resources\Images\App Logo.png" />
+	  <None Remove="Resources\Images\applogo" />
+	  <None Remove="Resources\Images\AppLogo.png" />
+	  <None Remove="Resources\Images\app_logo.png" />
+	  <None Remove="Resources\Images\dash.png" />
+	  <None Remove="Resources\Images\dashboard.png" />
+	  <None Remove="Resources\Images\dashboard_2.png" />
+	  <None Remove="Resources\Images\dashboard_3.png" />
+	  <None Remove="Resources\Images\dashboard_4.png" />
+	  <None Remove="Resources\Images\dpt.manag.png" />
+	  <None Remove="Resources\Images\dpt.manag1.png" />
+	  <None Remove="Resources\Images\dpt.png" />
+	  <None Remove="Resources\Images\dpt_mng.png" />
+	  <None Remove="Resources\Images\email.png" />
+	  <None Remove="Resources\Images\email1.png" />
+	  <None Remove="Resources\Images\email4.png" />
+	  <None Remove="Resources\Images\emp.overview.png" />
+	  <None Remove="Resources\Images\emp.overview1.png" />
+	  <None Remove="Resources\Images\employee_management.png" />
+	  <None Remove="Resources\Images\emp_manag.png" />
+	  <None Remove="Resources\Images\id.png" />
+	  <None Remove="Resources\Images\leave.png" />
+	  <None Remove="Resources\Images\leave.req.png" />
+	  <None Remove="Resources\Images\leave.req1.png" />
+	  <None Remove="Resources\Images\leave1.png" />
+	  <None Remove="Resources\Images\leave_requests.png" />
+	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\logo_app.png" />
+	  <None Remove="Resources\Images\password.png" />
+	  <None Remove="Resources\Images\password1.png" />
+	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\small.leave.png" />
+	  <None Remove="Resources\Images\tot.dpt.png" />
+	  <None Remove="Resources\Images\tot.emp.png" />
+	  <None Remove="Resources\Images\username.png" />
+	  <None Remove="Resources\Images\username1.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\LoginView.xaml.cs">
+	    <DependentUpon>LoginView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AdminSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CreateAccount.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EmployeeManagement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ForgotPassword.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LeaveRequests.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NewPass.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ResetPassword.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Resources\Images\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\admin_settings.png" />
+	  <MauiImage Remove="Resources\Images\App Logo.png" />
+	  <MauiImage Remove="Resources\Images\applogo" />
+	  <MauiImage Remove="Resources\Images\AppLogo.png" />
+	  <MauiImage Remove="Resources\Images\app_logo.png" />
+	  <MauiImage Remove="Resources\Images\dashboard.png" />
+	  <MauiImage Remove="Resources\Images\dashboard_2.png" />
+	  <MauiImage Remove="Resources\Images\dashboard_3.png" />
+	  <MauiImage Remove="Resources\Images\dashboard_4.png" />
+	  <MauiImage Remove="Resources\Images\dpt.manag.png" />
+	  <MauiImage Remove="Resources\Images\dpt.manag1.png" />
+	  <MauiImage Remove="Resources\Images\email.png" />
+	  <MauiImage Remove="Resources\Images\emp.overview.png" />
+	  <MauiImage Remove="Resources\Images\employee_management.png" />
+	  <MauiImage Remove="Resources\Images\leave.png" />
+	  <MauiImage Remove="Resources\Images\leave.req.png" />
+	  <MauiImage Remove="Resources\Images\leave_requests.png" />
+	  <MauiImage Remove="Resources\Images\password.png" />
+	  <MauiImage Remove="Resources\Images\username.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Resources\Images\NewFolder1\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Resources\Images\NewFolder3\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Resources\Images\NewFolder2\**" />
+	</ItemGroup>
+
+</Project>

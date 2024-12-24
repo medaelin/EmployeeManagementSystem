@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeManagementSystem.Views.UserSettings"
+             Title="UserSettings"
+             Shell.NavBarIsVisible="False"
+             MinimumHeightRequest="600"
+             MinimumWidthRequest="1200">
+    <ScrollView>
+        <Grid ColumnDefinitions="260,*" RowDefinitions=".2*, Auto, *">
+
+            <!-- Left Sidebar Background -->
+            <BoxView 
+                Grid.Column="0"
+                Grid.RowSpan="3"
+                Color="#756a99" />
+
+            <!-- Right Column Background -->
+            <BoxView 
+                Grid.Column="1"
+                Grid.RowSpan="3"
+                Color="#1a1c3d" />
+
+            <!-- Sidebar Buttons and Logo -->
+            <StackLayout Grid.Column="0" Padding="10" Spacing="20" Grid.RowSpan="3">
+                <Image 
+                    Source="logo_app.png"
+                    Margin="0,20,0,0"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFill" />
+
+                <!-- Sidebar Buttons -->
+                <Button 
+                    Text="Dashboard"
+                    ImageSource="dash.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,90,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnDashboardButtonClicked" />
+                <Button 
+                    Text="Employee Management"
+                    ImageSource="emp_manag.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,0,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand" 
+                    Clicked="OnEmployeeManagementButtonClicked" />
+                <Button 
+                    Text="Leave Requests"
+                    ImageSource="leave1.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,60,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnLeaveRequestsButtonClicked" />
+                <Button 
+                    Text="Admin Settings"
+                    ImageSource="admin.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,60,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnAdminSettingsButtonClicked" />
+                <Button 
+                    Text="Settings"
+                    ImageSource="settings.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,110,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#2d2653" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand" 
+                    Clicked="OnUserSettingsButtonClicked" />
+                <Button 
+                    Text="Log Out"
+                    ImageSource="logout.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,110,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand" 
+                    Clicked="OnLogOutButtonClicked" />
+            </StackLayout>
+
+            <!-- Right Column Content -->
+            <Grid Grid.Column="1" Grid.RowSpan="3" ColumnDefinitions="*" RowDefinitions="Auto, Auto, *">
+                <!-- Header -->
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="User Settings"
+                    FontFamily="LatoBold"
+                    Margin="20,15,0,0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <!-- Divider Line -->
+                <BoxView 
+                    Grid.ColumnSpan="1"
+                    Grid.Row="0"
+                    HeightRequest="1"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start"
+                    Margin="0,50,0,10" />
+
+                <!-- User Settings Content -->
+                <VerticalStackLayout Grid.Row="2" Spacing="20" Padding="10" Margin="20,10,0,0">
+                    <!-- Profile Picture -->
+                    <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Start">
+                        <Frame
+                            WidthRequest="180"
+                            HeightRequest="180"
+                            Margin="400,0,0,0"
+                            CornerRadius="90"
+                            BackgroundColor="White"
+                            Padding="0"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            HasShadow="False">
+                            <Image 
+                                Source="{Binding ProfileImageSource}" 
+                                Aspect="AspectFill"
+                                WidthRequest="180"
+                                HeightRequest="180"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start" />
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <!-- Profile Picture Edit Button -->
+                    <Button 
+                        Text="Edit Profile Picture"
+                        WidthRequest="150"
+                        Margin="415,0,0,0"
+                        BackgroundColor="#756a99"
+                        TextColor="White"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        Clicked="OnSelectPictureButtonClicked" />
+
+                    <!-- Change Email -->
+                    <Grid ColumnDefinitions="Auto,*" Padding="5" Margin="250,0,0,0" HorizontalOptions="Start">
+                        <Label
+                            Grid.Column="0"
+                            Margin="0,12,10,0"
+                            Text="Change Email" 
+                            FontSize="16" 
+                            FontFamily="LatoBold" 
+                            TextColor="White" 
+                            VerticalOptions="Start" 
+                            VerticalTextAlignment="Center"/>
+                        <Entry
+                            Grid.Column="1"
+                            x:Name="userNameEntry" 
+                            Placeholder="Enter new Email"
+                            WidthRequest="250"
+                            TextColor="Black"
+                            BackgroundColor="#e0d8ed"/>
+                    </Grid>
+
+                    <!-- Change Password -->
+                    <Grid ColumnDefinitions="Auto,*" Padding="5" Margin="250,0,0,0" HorizontalOptions="Start">
+                        <Label 
+                            Grid.Column="0"
+                            Margin="-31,12,10,0"
+                            Text="Change Password" 
+                            FontSize="16" 
+                            FontFamily="LatoBold" 
+                            TextColor="White" 
+                            VerticalOptions="Start" 
+                            VerticalTextAlignment="Center"/>
+                        <Entry
+                            Grid.Column="1"
+                            x:Name="passwordEntry" 
+                            Placeholder="Enter your new Password..."
+                            WidthRequest="250"
+                            IsPassword="True"
+                            TextColor="Black"
+                            BackgroundColor="#e0d8ed" />
+                    </Grid>
+
+                    <!-- Change Settings Button -->
+                    <Button 
+                        Text="Change Settings"
+                        Margin="413,0,10,0"
+                        WidthRequest="150"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        BackgroundColor="#756a99"
+                        FontFamily="LatoBold" 
+                        TextColor="White" 
+                        Clicked="OnChangeSettingsButtonClicked" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeManagementSystem.Views.EmployeeManagement"
+             Title="Employee Management"
+             BackgroundColor="#1d203e"
+             Shell.NavBarIsVisible="False"
+             MinimumHeightRequest="600"
+             MinimumWidthRequest="1200">
+
+    <Grid ColumnDefinitions="260,*" RowDefinitions="70,Auto,*">
+
+        <!-- Left Sidebar Background -->
+        <BoxView Grid.Column="0" Grid.RowSpan="3" Color="#756a99" />
+
+        <!-- Right Column Background -->
+        <BoxView Grid.Column="1" Grid.RowSpan="3" Color="#1a1c3d" />
+
+        <!-- Sidebar Buttons and Logo -->
+        <StackLayout Grid.Column="0" Padding="10" Spacing="20" Grid.RowSpan="3">
+            <!-- App Picture -->
+            <Image Source="logo_app.png"
+                   Margin="0,20,0,0"
+                   WidthRequest="80"
+                   HeightRequest="80"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Aspect="AspectFill" />
+
+            <!-- Sidebar Buttons -->
+            <Button Text="Dashboard"
+                    ImageSource="dash.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,90,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnDashboardButtonClicked" />
+            <Button Text="Employee Management"
+                    ImageSource="emp_manag.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,0,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#2d2653" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Leave Requests"
+                    ImageSource="leave1.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,60,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnLeaveRequestsButtonClicked" />
+            <Button Text="Admin Settings"
+                    ImageSource="admin.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,60,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnAdminSettingsButtonClicked" />
+            <Button Text="Settings"
+                    ImageSource="settings.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,110,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnUserSettingsButtonClicked" />
+            <Button Text="Log Out"
+                    ImageSource="logout.png"
+                    ContentLayout="Left,10"
+                    Padding="0,0,110,0"
+                    FontFamily="LatoLight"
+                    FontSize="17" 
+                    BackgroundColor="#756a99" 
+                    TextColor="White" 
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnLogOutButtonClicked" />
+        </StackLayout>
+
+        <!-- Header -->
+        <Label Grid.Column="1"
+               Grid.Row="0"
+               Text="Employee Management"
+               FontFamily="LatoBold"
+               Margin="20,15,0,0"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"
+               FontSize="17"
+               FontAttributes="Bold"
+               TextColor="White" />
+
+        <!-- Divider Line -->
+        <BoxView Grid.Column="1"
+                 Grid.Row="0"
+                 BackgroundColor="White"
+                 HeightRequest="1"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="Center"
+                 Margin="0,50,0,10" />
+
+        <!-- Search Box with Button -->
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Padding="20,10,20,10"
+              ColumnDefinitions="*,Auto"
+              HorizontalOptions="Fill"
+              VerticalOptions="Start">
+            <!-- Search Input -->
+            <Entry x:Name="SearchEntry"
+                   Placeholder="Search employees by Name or ID..."
+                   PlaceholderColor="Gray"
+                   BackgroundColor="White"
+                   TextChanged="OnSearchTextChanged"
+                   FontSize="15"
+                   FontFamily="Lato"
+                   TextColor="Black" />
+            <!-- Search Button -->
+            <Button Text="Search"
+                    Grid.Column="1"
+                    BackgroundColor="#2d2653"
+                    TextColor="White"
+                    FontFamily="LatoBold"
+                    FontSize="15"
+                    Clicked="OnSearchButtonClicked"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Employee Cards Section -->
+        <CollectionView Grid.Column="1"
+                        Grid.Row="2"
+                        ItemsSource="{Binding FilteredEmployees}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 VerticalItemSpacing="20"
+                                 HorizontalItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Card -->
+                    <Frame BackgroundColor="#756a99" 
+                           CornerRadius="20" 
+                           Padding="10" 
+                           HasShadow="True" 
+                           HeightRequest="210" 
+                           WidthRequest="300">
+                        <StackLayout Spacing="10">
+                            <!-- Header with Name and Position -->
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Position}"
+                                       FontSize="16"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <!-- Divider Line -->
+                            <BoxView HeightRequest="1" BackgroundColor="White" Margin="0,10,0,10" />
+                            <!-- Employee Info with Icon -->
+                            <StackLayout Spacing="10">
+                                <!-- Email -->
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="email4.png"
+                                           WidthRequest="20"
+                                           HeightRequest="20"
+                                           VerticalOptions="Center" />
+                                    <Label Text="{Binding Email}"
+                                           FontSize="14"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <!-- Department -->
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="dpt.png"
+                                           WidthRequest="20"
+                                           HeightRequest="20"
+                                           VerticalOptions="Center" />
+                                    <Label Text="{Binding Department}"
+                                           FontSize="14"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <!-- Employee ID -->
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image Source="id.png"
+                                           WidthRequest="20"
+                                           HeightRequest="20"
+                                           VerticalOptions="Center" />
+                                    <Label Text="{Binding EmployeeID}"
+                                           FontSize="14"
+                                           TextColor="White"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
